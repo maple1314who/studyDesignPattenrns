@@ -18,6 +18,7 @@ public class Example {
     public static void main(String[] args) {
         DynamicArray dynamicArray = new SortedDynamicArray();
         test(dynamicArray);
+        System.out.println("123");
     }
 
 

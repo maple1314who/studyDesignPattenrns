@@ -1,9 +1,5 @@
 package com.maple.study.demo_1_封装特性;
 
-/**
- * @author caihao
- * @create 2024-12-31 14:01
- */
 public class DynamicArray {
 
     private static final int DEFAULT_CAPACITY = 10;
@@ -19,16 +15,22 @@ public class DynamicArray {
     }
 
     public Integer get(int index) {
-        return elements[index];
+        if (index >= 0 && index < size) {  // 确保访问的索引有效
+            return elements[index];
+        } else {
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+        }
     }
 
     public void add(int element) {
         ensureCapacity();
-        elements[size++] = element;
+        elements[size++] = element;  // 确保元素被正确添加
     }
+
     protected void ensureCapacity() {
         if (size == capacity) {
-            Integer[] newElements = new Integer[capacity << 1];
+            capacity *= 2;  // 扩容时将容量加倍
+            Integer[] newElements = new Integer[capacity];
             System.arraycopy(elements, 0, newElements, 0, elements.length);
             elements = newElements;
         }
